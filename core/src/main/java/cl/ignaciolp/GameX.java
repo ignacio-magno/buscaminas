@@ -64,7 +64,7 @@ public class GameX extends ScreenAdapter {
         if (cell instanceof Logic.CellMine) return texture.GetMine();
         if (cell instanceof Logic.CellEmpty) return texture.GetEmpty();
 
-        return texture.GetOne();
+        return texture.GetNumber(1);
     }
 
     @Override
