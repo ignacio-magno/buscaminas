@@ -10,12 +10,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class GameX extends ScreenAdapter {
     private FitViewport viewport;
-    private Texture texture;
     private SpriteBatch batch;
     private Tablero tablero;
-    private Texture textureMine;
-    private Texture textureEmpty;
-    private Texture textureOne;
+    private GameTextures texture;
 
     public GameX() {
     }
@@ -46,10 +43,7 @@ public class GameX extends ScreenAdapter {
 
         batch = new SpriteBatch();
         viewport = new FitViewport(tablero.getWidth(), tablero.getHeight());
-        texture = new Texture("tapado.png");
-        textureMine = new Texture("mina.png");
-        textureEmpty = new Texture("hueco.png");
-        textureOne = new Texture("1.png");
+        texture = new GameTextures();
         this.tablero = tablero;
     }
 
@@ -66,11 +60,11 @@ public class GameX extends ScreenAdapter {
     }
 
     private Texture GetTexture(Cell cell) {
-        if (cell instanceof Logic.CellNotOpened ) return texture;
-        if (cell instanceof Logic.CellMine) return textureMine;
-        if (cell instanceof Logic.CellEmpty) return textureEmpty;
+        if (cell instanceof Logic.CellNotOpened ) return texture.GetDefault();
+        if (cell instanceof Logic.CellMine) return texture.GetMine();
+        if (cell instanceof Logic.CellEmpty) return texture.GetEmpty();
 
-        return textureOne;
+        return texture.GetOne();
     }
 
     @Override
