@@ -29,22 +29,6 @@ public class MatrixTest {
         CheckCellIsNumber(tablero.CellUser(8, 4), 1);
     }
 
-    @Test
-    public void game23(){
-        int x = 2;
-        int y = 3;
-
-        int xinit = x -1;
-        int yinit = y -1;
-
-        for (int i = 0; i <  9; i++) {
-            int x1 = xinit + i % 3;
-            int y1 = yinit + i / 3;
-
-            System.out.println("Checking " + x1 + "," + y1);
-        }
-    }
-
     private void CheckCellIsNumber(Logic.Cell cell, int content) {
         assert cell instanceof Logic.CellNumber;
         assert ((Logic.CellNumber) cell).getNumber() == content;

@@ -1,0 +1,81 @@
+---
+name: Buscaminas
+rules:
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 0
+  image: hueco.png
+- when:
+    blue: 0
+    black: 1
+    red: 0
+    green: 0
+  image: mina.png
+- when:
+    blue: 1
+    black: "*"
+    red: 0
+    green: "*"
+  image: tapado.png
+- when:
+    blue: "*"
+    black: "*"
+    red: 1
+    green: "*"
+  image: bandera.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 1
+  image: 1.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 2
+  image: 2.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 3
+  image: 3.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 4
+  image: 4.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 5
+  image: 5.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 6
+  image: 6.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 7
+  image: 7.png
+- when:
+    blue: 0
+    black: 0
+    red: 0
+    green: 8
+  image: 8.png
+- when:
+    blue: 0
+    black: 0
+    red: 2
+    green: 0
+  image: linea.png

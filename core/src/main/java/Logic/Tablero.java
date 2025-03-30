@@ -14,5 +14,13 @@ public class Tablero {
     public Cell Cell(int i, int i1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public int getWidth() {
+        return matrix.matrix.length;
+    }
+
+    public int getHeight() {
+        return matrix.matrix[0].length;
+    }
 }
 
