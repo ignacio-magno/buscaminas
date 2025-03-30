@@ -12,7 +12,7 @@ public class Tablero {
     }
 
     public Cell Cell(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return matrix.matrix[i][i1];
     }
 
     public int getWidth() {
