@@ -27,10 +27,13 @@ public class GameX extends ScreenAdapter {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+        stage.getViewport().apply();
         stage.act(delta);
+        stage.draw();
+
+        uiStage.getViewport().apply();
         uiStage.act(delta);
         uiStage.draw();
-        stage.draw();
 
         if (tablero.Win()){
             System.out.println("Ganaste");
@@ -52,7 +55,7 @@ public class GameX extends ScreenAdapter {
         stage = new Stage(new FitViewport(tablero.getWidth(), tablero.getHeight()));
         Gdx.input.setInputProcessor(stage);
 
-        //DrawTablero();
+        DrawTablero();
 
         Skin skin = new Skin(Gdx.files.internal("uiskin.json")); // Usa un skin de LibGDX
 
@@ -60,10 +63,14 @@ public class GameX extends ScreenAdapter {
 
         // Crear el Label para "Perdiste"
         Label loseLabel = new Label("¡Perdiste!", skin);
-        loseLabel.setFontScale(1f);
+        loseLabel.setFontScale(10f);
         loseLabel.setVisible(true);
 
-        uiStage.addActor(loseLabel);
+        Table table = new Table();
+        table.setFillParent(true);
+        table.add(loseLabel).center();
+
+        uiStage.addActor(table);
     }
 
     private void DrawTablero() {
