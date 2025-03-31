@@ -1,6 +1,5 @@
 package cl.ignaciolp;
 
-import Logic.Cell;
 import Logic.Tablero;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,11 +9,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class CellActor extends Actor {
     private final GameTextures texture;
-    private final Logic.Cell cell;
+    private final Tablero tablero;
+    private final int col;
+    private final int row;
+    boolean print;
 
-    public CellActor(Logic.Cell cell, GameTextures texture, int col, int row) {
-        this.cell = cell;
+    public CellActor(GameTextures texture, int col, int row, Logic.Tablero tablero) {
         this.texture = texture;
+        print = col == 3 && row == 3;
+        this.tablero = tablero;
+        this.col = col;
+        this.row = row;
 
         setBounds(col, row, 1, 1); // Posición y tamaño
 
@@ -22,7 +27,7 @@ public class CellActor extends Actor {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Clicked on " + col + ", " + row);
+                tablero.Click(col, row);
             }
         });
     }
@@ -30,11 +35,13 @@ public class CellActor extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // Obtener la textura apropiada basada en el estado de la celda
-        Texture cellTexture = GetTexture(cell);
+        Texture cellTexture = GetTexture();
         batch.draw(cellTexture, getX(), getY(), getWidth(), getHeight());
     }
 
-    private Texture GetTexture(Cell cell) {
+    private Texture GetTexture() {
+        Logic.Cell cell = tablero.Cell(col, row);
+
         if (cell instanceof Logic.CellNotOpened ) return texture.GetDefault();
         if (cell instanceof Logic.CellMine) return texture.GetMine();
         if (cell instanceof Logic.CellEmpty) return texture.GetEmpty();

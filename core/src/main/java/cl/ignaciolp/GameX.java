@@ -51,7 +51,7 @@ public class GameX extends ScreenAdapter {
         for (int i = 0; i < tablero.getWidth(); i++) {
             for (int j = 0; j < tablero.getHeight(); j++) {
                 Logic.Cell cell = tablero.Cell(i, j);
-                CellActor actor = new CellActor(cell, texture, i, j);
+                CellActor actor = new CellActor(texture, i, j, tablero);
                 stage.addActor(actor);
             }
         }
