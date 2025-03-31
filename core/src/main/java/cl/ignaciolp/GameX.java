@@ -4,6 +4,9 @@ import Logic.Tablero;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -11,6 +14,7 @@ public class GameX extends ScreenAdapter {
     private Tablero tablero;
     private GameTextures texture;
     private Stage stage;
+    private Stage uiStage;
 
     public GameX() {
     }
@@ -24,6 +28,8 @@ public class GameX extends ScreenAdapter {
     public void render(float delta) {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         stage.act(delta);
+        uiStage.act(delta);
+        uiStage.draw();
         stage.draw();
 
         if (tablero.Win()){
@@ -46,7 +52,18 @@ public class GameX extends ScreenAdapter {
         stage = new Stage(new FitViewport(tablero.getWidth(), tablero.getHeight()));
         Gdx.input.setInputProcessor(stage);
 
-        DrawTablero();
+        //DrawTablero();
+
+        Skin skin = new Skin(Gdx.files.internal("uiskin.json")); // Usa un skin de LibGDX
+
+        uiStage = new Stage(new FitViewport(800, 900)); // Mayor resolución para UI
+
+        // Crear el Label para "Perdiste"
+        Label loseLabel = new Label("¡Perdiste!", skin);
+        loseLabel.setFontScale(1f);
+        loseLabel.setVisible(true);
+
+        uiStage.addActor(loseLabel);
     }
 
     private void DrawTablero() {
