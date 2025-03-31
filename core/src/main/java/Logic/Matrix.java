@@ -68,7 +68,7 @@ public class Matrix {
             int x1 = c.getX();
             int y1 = c.getY();
 
-            if (cell instanceof CellMine) {
+            if (cell instanceof CellMine || cell instanceof CellMineHiden) {
                 minesAround++;
                 System.out.println("Mina encontrada en " + x1 + "," + y1);
             }
@@ -130,7 +130,7 @@ public class Matrix {
     }
 
     private void addMines(int x, int y) {
-        matrix[x][y] = new CellMine();
+        matrix[x][y] = new CellMineHiden();
         System.out.println("Mina en " + x + "," + y);
         Draw();
     }

@@ -1,5 +1,6 @@
 package cl.ignaciolp;
 
+import Logic.CellMineHiden;
 import Logic.Tablero;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -43,6 +44,7 @@ public class CellActor extends Actor {
         Logic.Cell cell = tablero.Cell(col, row);
 
         if (cell instanceof Logic.CellNotOpened ) return texture.GetDefault();
+        if (cell instanceof CellMineHiden) return texture.GetDefault();
         if (cell instanceof Logic.CellMine) return texture.GetMine();
         if (cell instanceof Logic.CellEmpty) return texture.GetEmpty();
 
