@@ -10,6 +10,7 @@ import java.util.LinkedList;
 public class Matrix {
     Cell[][] matrix;
     LinkedHashMap<String, CellWithCoordinates> queue = new LinkedHashMap<>();
+    public boolean Lose;
 
     public Matrix(int rows, int columns) {
         matrix = new Cell[rows][columns];
@@ -30,16 +31,24 @@ public class Matrix {
     }
 
     private Cell[][] onClick(int x, int y) {
-        System.out.println("Click en " + x + "," + y);
+        //System.out.println("Click en " + x + "," + y);
+        if (Lose) return matrix;
 
         Cell cell = Cell(x, y);
+
+        if (cell instanceof CellMineHiden) {
+            matrix[x][y] = new CellMine();
+            Lose = true;
+            return matrix;
+        }
+
         if (!(cell instanceof CellNotOpened)) {
-            System.out.println("Ya abierto");
+            //System.out.println("Ya abierto");
             return matrix;
         }
 
         int minesAround = getMinesAround(x, y);
-        System.out.println("Minas alrededor: " + minesAround);
+        //System.out.println("Minas alrededor: " + minesAround);
 
         if (minesAround > 0) {
             matrix[x][y] = new CellNumber(minesAround);
@@ -70,7 +79,7 @@ public class Matrix {
 
             if (cell instanceof CellMine || cell instanceof CellMineHiden) {
                 minesAround++;
-                System.out.println("Mina encontrada en " + x1 + "," + y1);
+                //System.out.println("Mina encontrada en " + x1 + "," + y1);
             }
         }
 
@@ -90,7 +99,7 @@ public class Matrix {
                 if (queue.containsKey(keyFromCoordinates(x1, y1))) {
                     continue;
                 }
-                System.out.println("Añadiendo a la cola " + x1 + "," + y1);
+                //System.out.println("Añadiendo a la cola " + x1 + "," + y1);
                 queue.put(keyFromCoordinates(x1, y1), c);
             }
         }
@@ -131,7 +140,7 @@ public class Matrix {
 
     private void addMines(int x, int y) {
         matrix[x][y] = new CellMineHiden();
-        System.out.println("Mina en " + x + "," + y);
+        //System.out.println("Mina en " + x + "," + y);
         Draw();
     }
     public Cell CellUser(int x, int y) {
@@ -145,11 +154,11 @@ public class Matrix {
     public void Draw() {
         for (int i = matrix[0].length - 1; i >= 0; i--) {
             for (int j = 0; j < matrix.length; j++) {
-                System.out.print(matrix[j][i].content());
+                //System.out.print(matrix[j][i].content());
             }
-            System.out.println();
+            //System.out.println();
         }
 
-        System.out.println("____________________");
+        //System.out.println("____________________");
     }
 }

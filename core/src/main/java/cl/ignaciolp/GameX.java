@@ -25,6 +25,14 @@ public class GameX extends ScreenAdapter {
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
         stage.act(delta);
         stage.draw();
+
+        if (tablero.Win()){
+            System.out.println("Ganaste");
+        }
+
+        if (tablero.Lose()){
+            System.out.println("Perdiste");
+        }
     }
 
     @Override
