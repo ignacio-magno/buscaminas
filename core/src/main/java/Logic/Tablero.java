@@ -8,7 +8,9 @@ public class Tablero {
     }
 
     public TurnResult Click(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        matrix.onClickUser(i + 1, i1 +1);
+
+        return new TurnResult();
     }
 
     public Cell Cell(int i, int i1) {

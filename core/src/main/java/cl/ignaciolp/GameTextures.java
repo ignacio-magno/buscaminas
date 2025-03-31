@@ -22,9 +22,15 @@ public class GameTextures implements Disposable {
         textureMine = new Texture("mina.png");
         textureEmpty = new Texture("hueco.png");
         // for one to eight
-        for (int i = 0; i < 8; i++){
-            Texture texture = new Texture(i +1 + ".png");
-        }
+        textureOne = new Texture("1.png");
+        TextureTwo = new Texture("2.png");
+        TextureThree = new Texture("3.png");
+        TextureFour = new Texture("4.png");
+        TextureFive = new Texture("5.png");
+        TextureSix = new Texture("6.png");
+        TextureSeven = new Texture("7.png");
+        TextureEight = new Texture("8.png");
+
         TextureFlag = new Texture("bandera.png");
     }
 
@@ -73,5 +79,13 @@ public class GameTextures implements Disposable {
         textureMine.dispose();
         textureEmpty.dispose();
         textureOne.dispose();
+        TextureTwo.dispose();
+        TextureThree.dispose();
+        TextureFour.dispose();
+        TextureFive.dispose();
+        TextureSix.dispose();
+        TextureSeven.dispose();
+        TextureEight.dispose();
+        TextureFlag.dispose();
     }
 }
